@@ -73,7 +73,7 @@ class DjrillBackend(BaseEmailBackend):
 
         # check if template is set in message to send it via
         # api url: /messages/send-template.json
-        if hasattr(message, 'template_name'):
+        if getattr(message, 'template_name', False):
             api_url = self.api_send_template
             api_params['template_name'] = message.template_name
             if hasattr(message, 'template_content'):
